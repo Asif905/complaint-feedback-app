@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+<div class="container">
+  <div class="row">
+    <h3>My Complaints</h3>
+      <table class="table">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Status</th>
+              <th scope="col">Date Created</th>
+              <th scope="col">Date Updated</th>
+              <th scope="col">Heading</th>
+            </tr>
+            <tr *ngFor="let listOfComplaint of listOfUserComplaints; let i=index" 
+                data-toggle="modal" 
+                data-target="#complaintModal"
+                (click) ="onEditComplaint(listOfComplaint)">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ listOfComplaint.status }}</td>
+              <td>{{ listOfComplaint.dateCreated }}</td>
+              <td>{{ listOfComplaint.dateUpdated }}</td>
+              <td>{{ listOfComplaint.headText }}</td>
+            </tr>
+        </table>
+  </div>
+  <div class="row">
+      <app-new-complaint></app-new-complaint> 
+  </div>
+</div>
+
+<div class="container">
+
+    <!-- Modal -->
+    <div class="modal fade" id="complaintModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Complaint</h4>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="onComplaintEdit(f)" #f="ngForm">
+                <div class="form-group">
+                    <label for="heading">Date Created: {{ updateComplaint.headText }}</label>
+                  </div>
+                <div class="form-group">
+                  <label for="description">Date Created: {{ updateComplaint.descriptionText }}</label>
+                </div>
+                <div class="form-group">
+                  <label for="dateCreated">Date Created: {{ updateComplaint.dateCreated }}</label>
+                </div>
+                <div class="form-group">
+                    <label for="dateUpdated">Date Updated: {{ updateComplaint.dateUpdated }}</label>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <h5>Comments</h5>
+                    <label for="comments">{{ updateComplaint.comments }}</label>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <label for="addNewComments">Enter New Comment:</label>
+                  <input type="text" class="form-control" name="addComments" ngModel>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </form>
+          </div>
+        </div>      
+      </div>
+    </div>  
+  </div>
