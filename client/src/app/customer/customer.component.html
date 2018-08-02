@@ -26,8 +26,8 @@
           style="cursor:pointer;">
           <th scope="row">{{ i+1 }}</th>
           <td>{{ listOfComplaint.status }}</td>
-          <td>{{ listOfComplaint.dateCreated }}</td>
-          <td>{{ listOfComplaint.dateUpdated }}</td>
+          <td>{{ listOfComplaint.dateCreated | date: 'medium' }}</td>
+          <td>{{ listOfComplaint.dateUpdated | date: 'medium' }}</td>
           <td>{{ listOfComplaint.headText }}</td>
         </tr>
       </table>
@@ -61,11 +61,11 @@
               </div>
               <div class="form-group">
                 Date Created:
-                <label for="dateCreated">{{ updateComplaint.dateCreated }}</label>
+                <label for="dateCreated">{{ updateComplaint.dateCreated | date: 'medium' }}</label>
               </div>
               <div class="form-group">
                 Date Updated:
-                <label for="dateUpdated">{{ updateComplaint.dateUpdated }}</label>
+                <label for="dateUpdated">{{ updateComplaint.dateUpdated | date: 'medium' }}</label>
               </div>
               <div class="form-group">
                 <hr>

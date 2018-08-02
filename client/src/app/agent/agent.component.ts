@@ -28,7 +28,7 @@ export class AgentComponent implements OnInit {
     this.updateComplaint = complaintDetails;
     this.complaintId = complaintDetails._id;
     this.complaintStatus = complaintDetails.status;
-    document.getElementById("complaintStatus").value = this.complaintStatus;
+    document.getElementById("complaintStatus").value = this.complaintStatus; 
   }
 
   onComplaintEdit(form: NgForm) {
