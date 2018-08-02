@@ -7,13 +7,13 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './header/login/login.component';
 import { SignupComponent } from './header/signup/signup.component';
-import { CustomerComponent } from './customer/customer.component';
 import { AgentComponent } from './agent/agent.component';
-import { NewComplaintComponent } from './customer/new-complaint/new-complaint.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import { EditComplaintComponent } from './agent/edit-complaint/edit-complaint.component';
-import { AppService } from './app.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from './header/auth.service';
+import { AuthGuard } from './header/auth-guard.service';
+import { CustomerModule } from './customer/customer.module';
 
 @NgModule({
   declarations: [
@@ -21,19 +21,18 @@ import { AppService } from './app.service';
     HeaderComponent,
     LoginComponent,
     SignupComponent,
-    CustomerComponent,
     AgentComponent,
-    NewComplaintComponent,
-    EditComplaintComponent
+    PageNotFoundComponent
   ],
   imports: [
     NgbModule.forRoot(),
     FormsModule,
     BrowserModule,
+    CustomerModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AppService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

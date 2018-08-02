@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService } from '../app.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,25 +9,23 @@ import { AppService } from '../app.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, 
+  constructor(private router: Router,
     private route: ActivatedRoute,
-    private appService: AppService) { }
-
-    loginstatus = this.appService.getLoggedInStatus();
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  onSignup(){
-    this.router.navigate(['signup'],{relativeTo: this.route});
+  onSignup() {
+    this.router.navigate(['signup'], { relativeTo: this.route });
   }
 
-  onLogin(){
-    this.router.navigate(['login'],{relativeTo: this.route});
+  onLogin() {
+    this.router.navigate(['login'], { relativeTo: this.route });
   }
 
-  onLogout(){
-    this.router.navigate(['login'],{relativeTo: this.route});
+  onLogout() {
+    this.authService.logOutUser();
   }
 
 }

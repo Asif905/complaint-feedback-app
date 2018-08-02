@@ -1,3 +1,7 @@
 span{
   color: red;
 }
+
+.modal-header{
+  background-color: rgb(145, 233, 204);
+}

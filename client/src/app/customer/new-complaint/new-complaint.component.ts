@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import { NgForm } from '../../../../node_modules/@angular/forms';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,22 +7,26 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './new-complaint.component.html',
   styleUrls: ['./new-complaint.component.css']
 })
-export class NewComplaintComponent  {
+export class NewComplaintComponent {
 
-  constructor(private http: HttpClient) {}
+  @ViewChild('fileInput') fileInput: ElementRef;
 
-  onComplaintSubmit(form:NgForm){
+  constructor(private http: HttpClient) { }
+
+  onComplaintSubmit(form: NgForm) {
     const heading = form.value.heading;
     const description = form.value.description;
     const userId = localStorage.getItem('userID');
-    this.http.post('http://localhost:8000/complaint/'+userId,{
+    this.http.post('http://localhost:8000/complaint/' + userId, {
       headText: heading,
       descriptionText: description,
-      user:userId
+      user: userId
     }).subscribe(res => {
       console.log(res);
     })
     form.reset();
+    this.fileInput.nativeElement.click();
+    window.location.reload();
   }
 
 }

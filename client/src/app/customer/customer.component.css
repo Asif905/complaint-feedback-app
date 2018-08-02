@@ -13,3 +13,15 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+tr:hover {
+    background-color: #FFCC00
+}
+
+label{
+    font-size: 15px;
+}
+
+.modal-header{
+    background-color: rgb(145, 233, 204);
+}
